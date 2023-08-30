@@ -145,7 +145,7 @@ const Register = () => {
                             <input type="text" onChange={e => setOtp(e.target.value)}
                                 className=' w-5/6 outline-none overflow-x-scroll placeholder:font-semibold' placeholder='Please enter the verification code' name="otp" id="otp" />
                         </div>
-                        <button className='bg-vlt text-white text-xs px-4 mt-2  rounded-md' onClick={() => handleOTPSend(String(Math.floor(100000 + Math.random() * 900000)))}>Send</button>
+                        <button className='bg-[rgb(48,177,49)] text-white text-xs px-4 mt-2  rounded-md' onClick={() => handleOTPSend(String(Math.floor(100000 + Math.random() * 900000)))}>Send</button>
                     </div>
 
                 </div> */}
@@ -176,7 +176,7 @@ const Register = () => {
                         className=' w-5/6 outline-none overflow-x-scroll placeholder:font-semibold' placeholder='Invitation code' name="invite_code" id="inv_code" />
                 </div>
 
-                <button onClick={handleRegister} className='bg-vlt text-white pt-1 pb-1 rounded-full text-lg w-4/5 mx-auto'>Register</button>
+                <button onClick={handleRegister} className='bg-[rgb(48,177,49)] text-white pt-1 pb-1 rounded-full text-lg w-4/5 mx-auto'>Register</button>
                 <div onClick={() => navigate('/login')} className='text-vlt font-bold text-sm underline mx-auto mt-4'>
                     Existing account, login
                 </div>

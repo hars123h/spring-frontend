@@ -114,7 +114,7 @@ const Login = () => {
                 {/*[#0096D5] */}
                 <div className='mt-4'>
                     <button onClick={handleSignIn} 
-                    className='bg-yellow-500 w-full pt-2 pb-2 text-lg text-white rounded-full shadow-md shadow-blue-400
+                    className='bg-[rgb(48,177,49)] w-full pt-2 pb-2 text-lg text-white rounded-full shadow-md shadow-blue-400
                     '>Log in</button>
                 </div>
                 {/*[#379EFE] */}
