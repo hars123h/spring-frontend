@@ -184,7 +184,7 @@ const Withdrawal = () => {
 
         var valid = startDate < currentDate && endDate > currentDate;
         //console.log(valid);
-        return true;
+        return valid;
     }
     //[#2e9afe]
     return (
