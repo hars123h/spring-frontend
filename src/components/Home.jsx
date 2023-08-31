@@ -225,7 +225,7 @@ const Home = () => {
 
     return (
         <div className='relative bg-[#eaf4eb]'>
-            {toasterShow ? <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+            {toasterShow ? <div className='absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[99999] '>
                 <div className='flex gap-2 bg-black opacity-80 text-white px-2 py-1 rounded-md'>
                     <div>{toasterText}</div>
                 </div>
