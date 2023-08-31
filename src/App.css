@@ -5,13 +5,13 @@ body {
 }
 
 .mine_image {
-    background-image: url('./images/assets/bg_img1.png');
+    background-image: url('./images/assets/bg_img2.png');
     background-repeat: no-repeat;
     background-size:contain;
 }
 
 .mine_image1 {
-  background-image: url('./images/assets/bg_img1.png');
+  background-image: url('./images/assets/bg_img2.png');
   background-repeat: no-repeat;
   background-size:cover;
 }
