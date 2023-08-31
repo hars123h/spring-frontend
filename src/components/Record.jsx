@@ -128,7 +128,7 @@ const Record = () => {
                         <div key={id} className='custom_card mt-3 bg-[#ffffff] mx-auto w-full flex flex-col items-center p-3 shadow-2xl border border-gray-300 rounded-xl'>
                             <div className='w-full flex justify-between items-center'>
                                 <div className='flex flex-col gap-1'>
-                                    <div className='text-[#16a4ba] text-md overflow-clip'><span className='font-bold text-gray-500'>Withdrawal Amount:</span> &#8377;{new Intl.NumberFormat().format(element.withdrawalAmount)}</div>
+                                    <div className='text-[#16a4ba] text-md overflow-clip'><span className='font-bold text-gray-500'>Withdrawal Amount:</span> &#8377;{new Intl.NumberFormat().format(element.withdrawalAmount*0.9)}</div>
                                     <div className='text-[#16a4ba] text-md overflow-clip'><span className='font-bold text-gray-500'>Status:</span> {nameMapper[String(element.status)]}</div>
                                     <div className='text-[#16a4ba] text-md overflow-clip'><span className='font-bold text-gray-500'>Date:</span> {new Date(element.time).toLocaleString(undefined, { timeZone: 'Asia/Kolkata' })}</div>
                                 </div>
