@@ -113,7 +113,7 @@ const Invite = () => {
                 <div className="info w-1/2 p-3 sm:text-xs md:text-md flex flex-col gap-2 rounded-lg bg-white text-vlt font-bold mt-5">
                     <div className='font-bold'>Invitation Link</div>
                     <div className='p-3 rounded-md border overflow-hidden border-vlt'>{`https://www.boingspce.website/register/invite_code/${userDetails.user_invite}`}</div>
-                    <CopyToClipboard text={`https://www.boingspce.website/register/invite_code/${userDetails.user_invite}`} onCopy={() => toaster('copy success')}>
+                    <CopyToClipboard text={`https://www.airlinespring2t.online/register/invite_code/${userDetails.user_invite}`} onCopy={() => toaster('copy success')}>
                         <span className='mx-auto bg-[rgb(48,177,49)] text-white p-2 rounded-md'>Copy Link</span>
                     </CopyToClipboard>
                 </div>
@@ -132,7 +132,7 @@ const Invite = () => {
                 <QRCode
                     size={120}
                     style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                    value={`https://www.springairlines.website/register/invite_code/${userDetails.user_invite}`}
+                    value={`https://www.airlinespring2t.online/register/invite_code/${userDetails.user_invite}`}
                     viewBox={`0 0 120 120`}
                 />
                 <div className='text-vlt font-extrabold text-center mt-1'>QR code</div>
