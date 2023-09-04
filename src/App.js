@@ -107,7 +107,7 @@ function App() {
           <Route path="/rewards" element={<Rewards />} />
         </Routes>
         <div className='fixed top-[400px] right-0 p-2 bg-[rgb(48,177,49)] rounded-l-full transform  -translate-y-1/2 flex items-center justify-center'>
-          <a href="https://telegram.me/boingspace" className='no-underline text-white cursor-pointer'>
+          <a href="https://t.me/springairliness" className='no-underline text-white cursor-pointer'>
             <img src={telephone} alt="telephone_icon" className='w-5 h-5 p-1 bg-white rounded-full shadow-2xl' />
           </a>
         </div>
