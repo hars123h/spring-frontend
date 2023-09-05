@@ -11,6 +11,7 @@ import DateDifference from '../utility/DateDifference.js';
 import ReactModal from 'react-modal';
 import axios from 'axios';
 import BASE_URL from '../api_url.js';
+import { RotatingLines } from 'react-loader-spinner';
 
 
 const customStyles = {
@@ -38,6 +39,9 @@ const Withdrawal = () => {
     const [wamount, setWamount] = useState(0);
     const [diffDays, setDiffDays] = useState(0);
     // const [btnActive, setBtnActive] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [text, setText] = useState('Loading');
+
     const [details, setDetails] = useState({
         fullName: '',
         phoneNo: '',
@@ -96,6 +100,11 @@ const Withdrawal = () => {
 
     const handleWithdrawal = async () => {
 
+        setIsOpen(false)
+
+        setLoading(true)
+
+
         if (Number(wamount) === false || Number(wamount) <= 0) {
             toaster('Enter a valid number');
             return;
@@ -118,25 +127,38 @@ const Withdrawal = () => {
             return;
         }
 
-        if (wpassword === loc.state.withdrawalPassword && otp === otpfield) {
+        if (wpassword === loc.state.withdrawalPassword) {
             const tempDetails = details;
             delete tempDetails['_id'];
             try {
-                const docRef1 = await axios.post(`${BASE_URL}/place_withdrawal`, {
-                    withdrawalAmount: (Number(wamount)),
-                    ...tempDetails,
-                    afterDeduction: (Number(wamount) - (Number(amountDetails.withdrawal_fee) * Number(wamount) / 100)),
-                    user_id: localStorage.getItem('uid'),
-                    time: new Date(),
-                    balance: balance,
-                    status: 'pending'
-                });
-                toaster('Withdrawal request placed successfully!', '/record');
-                //navigate('/record');
+                const afterDeduction = (Number(wamount) - (Number(amountDetails.withdrawal_fee) * Number(wamount) / 100));
+                console.log(afterDeduction);
+                if (afterDeduction !== null) {
+
+
+                    const docRef1 = await axios.post(`${BASE_URL}/place_withdrawal`, {
+                        withdrawalAmount: (Number(wamount)),
+                        ...tempDetails,
+                        afterDeduction,
+                        user_id: localStorage.getItem('uid'),
+                        time: new Date(),
+                        balance: balance,
+                        status: 'pending'
+                    });
+                    setLoading(false)
+                    toaster('Withdrawal request placed successfully!', '/record');
+                    //navigate('/record');
+                } else {
+                    setLoading(false)
+                    toaster('Something went worng try again')
+                }
+
             } catch (e) {
+                setLoading(false)
                 console.error("Error adding document: ", e);
             }
         } else {
+            setLoading(false)
             toaster('Withdrawal Password is incorrect');
             //console.log(wpassword, loc.state.withdrawalPassword);
         }
@@ -194,6 +216,12 @@ const Withdrawal = () => {
                     <div>{toasterText}</div>
                 </div>
             </div> : null}
+            {loading ? <div className='flex z-[999999] gap-2 items-center mt-[5px] justify-center bg-black text-white py-[10px] px-4  rounded-[4px] opacity-70 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+                {text === 'Loading' ? <div>
+                    <RotatingLines strokeColor='white' width='20' />
+                </div> : null}
+                <div className='text-sm'>{text}</div>
+            </div> : null}
             <div>
                 <ReactModal
                     isOpen={modalIsOpen}
@@ -202,7 +230,7 @@ const Withdrawal = () => {
                     ariaHideApp={false}
 
                 >
-                    <h1 className='text-gray-600 mb-3 text-xl'>Are you Sure?</h1>
+                    <h1 className='text-gray-600 mb-3 z-[1] text-xl'>Are you Sure?</h1>
                     <div>
                         <button onClick={() => handleWithdrawal()} className='bg-[rgb(48,177,49)] text-white px-2 py-1 rounded-lg shadow-md w-[64px]'>Yes</button>
                         <button onClick={() => setIsOpen(false)} className='bg-[rgb(48,177,49)] text-white px-2 py-1 rounded-lg shadow-md w-[64px] ml-2'>cancel</button>
@@ -281,9 +309,9 @@ const Withdrawal = () => {
             <div className='mx-2'>
                 {
                     isBetween() === false ? <button onClick={() => toaster('You can withdraw only between 10:00 to 18:00 hours only.')} className='bg-[rgb(48,177,49)] text-white text-md mt-5 mb-20 rounded-lg shadow-md block w-full py-2 shadow-[#12a5b7]'>Confirm</button>
-                    : <button onClick={handleLastButton} className='bg-[rgb(48,177,49)] text-white text-md mt-5 mb-20 rounded-lg shadow-md block w-full py-2 shadow-[#12a5b7]'>Confirm</button>
+                        : <button onClick={handleLastButton} className='bg-[rgb(48,177,49)] text-white text-md mt-5 mb-20 rounded-lg shadow-md block w-full py-2 shadow-[#12a5b7]'>Confirm</button>
                 }
-                
+
             </div>
         </div>
     )
