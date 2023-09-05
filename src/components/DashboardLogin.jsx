@@ -1,6 +1,6 @@
 import { Typography, Box, TextField, InputAdornment, Button } from '@material-ui/core'
 import { Mail, VpnKey } from '@material-ui/icons'
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import BASE_URL from '../api_url';
@@ -12,16 +12,16 @@ const DashboardLogin = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = async() => {
-        const {data} = await axios.post(`${BASE_URL}/admin_login`, {'email':email, 'password':password});
+    const handleSubmit = async () => {
+        const { data } = await axios.post(`${BASE_URL}/admin_login`, { 'email': email, 'password': password });
         console.log(data);
-        if(data!==null) {            
-            localStorage.setItem('name',data.name);
-            localStorage.setItem('email',data.email);
-            localStorage.setItem('password',data.passoword);
-            localStorage.setItem('access',data.access);
+        if (!data.hasOwnProperty('message')) {
+            localStorage.setItem('name', data.name);
+            localStorage.setItem('email', data.email);
+            localStorage.setItem('password', data.passoword);
+            localStorage.setItem('access', data.access);
             navigate('/dummyUser/Dashboard');
-        }else {
+        } else {
             toast('Invalid Email/Password!');
         }
     }
@@ -33,7 +33,7 @@ const DashboardLogin = () => {
             </Box>
 
             <Box className='flex flex-col w-2/6 mx-auto gap-4 mt-36'>
-                <TextField onChange={e=>setEmail(e.target.value)} label="Email Address*" variant='outlined' InputProps={
+                <TextField onChange={e => setEmail(e.target.value)} label="Email Address*" variant='outlined' InputProps={
                     {
                         endAdornment:
                             <InputAdornment>
@@ -42,7 +42,7 @@ const DashboardLogin = () => {
                     }
 
                 } />
-                <TextField onChange={e=>setPassword(e.target.value)} label="Password*" variant='outlined' type="password" InputProps={
+                <TextField onChange={e => setPassword(e.target.value)} label="Password*" variant='outlined' type="password" InputProps={
                     {
                         endAdornment:
                             <InputAdornment>
