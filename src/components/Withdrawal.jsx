@@ -106,23 +106,27 @@ const Withdrawal = () => {
 
 
         if (Number(wamount) === false || Number(wamount) <= 0) {
+            setLoading(false)
             toaster('Enter a valid number');
             return;
         }
 
         if ((Number(wamount)) < Number(amountDetails.mwamount)) {
             //console.log((Number(wamount)+Number(amountDetails.withdrawal_fee)), Number(amountDetails.mwamount));
+            setLoading(false)
             toaster(`Amount should be greater than ${amountDetails.mwamount}`);
             //console.log(wamount, amountDetails.amount);
             return;
         }
 
         if ((Number(wamount) > 50000)) {
+            setLoading(false)
             toaster('Amount should not be greatr than Rs 50,000');
             return;
         }
 
         if (((Number(wamount)) > Number(balance))) {
+            setLoading(false)
             toaster('You dont have enough balance');
             return;
         }
@@ -162,6 +166,8 @@ const Withdrawal = () => {
             toaster('Withdrawal Password is incorrect');
             //console.log(wpassword, loc.state.withdrawalPassword);
         }
+
+        setLoading(false)
 
     }
 
